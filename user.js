@@ -1,13 +1,15 @@
 // ==UserScript==
 // @name         国图下载器
 // @namespace    https://qinlili.bid/
-// @version      0.1
+// @version      0.2
 // @description  通过劫持中间数据下载原始PDF，虽然方法非常扭曲，但能跑起来
 // @author       琴梨梨
 // @match        *://read.nlc.cn/static/webpdf/indexnobj.html?*
-// @icon         https://read.nlc.cn/static/style/images/gutu_logo.jpg
+// @match        *://read.nlc.cn/static/webpdf/index.html?*
+// @icon         http://read.nlc.cn/static/style/images/gutu_logo.jpg
 // @grant        none
 // @run-at       document-body
+// @license      MPLv2
 // ==/UserScript==
 
 (function() {
@@ -41,7 +43,7 @@
     self.importScripts=src=>(originImport("http://read.nlc.cn/static/webpdf/lib/"+src));`
     const originWorker=window.Worker
     window.Worker= function(aurl,options) {
-        if(aurl.indexOf("WebPDFJRWorker.js")>0){
+        if(aurl.indexOf("WebPDFJRWorker.js")>=0){
             console.log("捉住Worker请求了喵！")
             console.log(aurl)
             var oReq = new XMLHttpRequest();
