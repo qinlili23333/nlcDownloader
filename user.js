@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         国图下载器
 // @namespace    https://qinlili.bid/
-// @version      0.2
+// @version      0.3
 // @description  通过劫持中间数据下载原始PDF，虽然方法非常扭曲，但能跑起来
 // @author       琴梨梨
 // @match        *://read.nlc.cn/static/webpdf/indexnobj.html?*
 // @match        *://read.nlc.cn/static/webpdf/index.html?*
+// @match        *://read.nlc.cn/static/webpdf/left.html?*
+// @match        *://read.nlc.cn/static/webpdf/right.html?*
 // @icon         http://read.nlc.cn/static/style/images/gutu_logo.jpg
 // @grant        none
 // @run-at       document-body
