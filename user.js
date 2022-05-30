@@ -6,10 +6,10 @@
 // @author       琴梨梨
 // @match        *://read.nlc.cn/static/webpdf/indexnobj.html?*
 // @match        *://read.nlc.cn/static/webpdf/index.html?*
-// @match        *://read.nlc.cn/static/webpdf/left.html?*
-// @match        *://read.nlc.cn/static/webpdf/right.html?*
 // @icon         http://read.nlc.cn/static/style/images/gutu_logo.jpg
 // @grant        none
+// @homepage     https://github.com/qinlili23333/nlcDownloader
+// @supportURL   https://github.com/qinlili23333/nlcDownloader
 // @run-at       document-body
 // @license      MPLv2
 // ==/UserScript==
@@ -28,6 +28,9 @@
 
     let injectWorker=`(function(open) {
         XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
+            if (!(async === false)) {
+                async = true;
+            };
             if(url.indexOf("OutOpenBook/getReader")>0){
                 console.log(url)
                 console.log("捉住下载请求了喵！正在监控喵！")
