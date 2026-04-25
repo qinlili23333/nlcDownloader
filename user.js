@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         国图下载器
 // @namespace    https://qinlili.bid/
-// @version      0.5
+// @version      0.5.1
 // @description  通过劫持中间数据下载原始PDF，虽然方法非常扭曲，但能跑起来
 // @author       琴梨梨
 // @match        *://read.nlc.cn/static/webpdf/indexnobj.html?*
@@ -9,12 +9,15 @@
 // @match        *://read.nlc.cn/static/webpdf/left.html?*
 // @match        *://read.nlc.cn/static/webpdf/right.html?*
 // @match        *://read.nlc.cn/yuewen/read?*
+// @match        *://read.nlc.cn/yuewen/detail?*
 // @homepage     https://github.com/qinlili23333/nlcDownloader
 // @supportURL   https://github.com/qinlili23333/nlcDownloader
 // @icon         http://read.nlc.cn/static/style/images/gutu_logo.jpg
 // @grant        none
 // @run-at       document-start
 // @license      MPLv2
+// @downloadURL https://update.greasyfork.org/scripts/441502/%E5%9B%BD%E5%9B%BE%E4%B8%8B%E8%BD%BD%E5%99%A8.user.js
+// @updateURL https://update.greasyfork.org/scripts/441502/%E5%9B%BD%E5%9B%BE%E4%B8%8B%E8%BD%BD%E5%99%A8.meta.js
 // ==/UserScript==
 
 (function() {
@@ -28,7 +31,9 @@
         eleLink.click();
         document.body.removeChild(eleLink);
     }
-    if(location.pathname.indexOf("webpdf")){
+    if(location.pathname.indexOf("webpdf")>=0){
+        //PDF下载不再可行，需要借助WebView劫持
+        return;
         //PDF下载
         let injectWorker=`(function(open) {
         XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
